@@ -60,23 +60,6 @@ final class LoginViewModel {
             .disposed(by: self.disposeBag)
     }
     
-    @discardableResult
-    private func validateEmail() -> Bool {
-        if email.value.isValidUserName {
-            return true
-        }
-        
-        mutableState.accept(.showEmailError("Please enter valid email addresss."))
-        return false
-    }
-    
-    private func onButtonTapAction() {
-        guard self.validateEmail() else {
-            return
-        }
-        print("Thank you validation is successfully done.")
-    }
-    
 }
 
 //MARK: LoginViewModel+ViewModel
