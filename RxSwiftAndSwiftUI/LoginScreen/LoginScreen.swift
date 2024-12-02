@@ -42,20 +42,10 @@ struct LoginScreen: View {
                         self.isButtonEnabled = isEnabled
                         break
                     case .showEmailError(let emailError):
-                        if emailError.isNotEmpty {
-                            self.emailErrorLabel = emailError
-                        }
-                        else {
-                            self.emailErrorLabel = nil
-                        }
+                        self.emailErrorLabel = emailError
                         break
                     case .showPasswordError(let pswdError):
-                        if pswdError.isNotEmpty {
-                            self.passwordErrorLabel = pswdError
-                        }
-                        else {
-                            self.passwordErrorLabel = nil
-                        }
+                        self.passwordErrorLabel = pswdError
                         break
                     }
                     break

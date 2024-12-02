@@ -37,33 +37,27 @@ final class LoginViewModel {
     
     private func bindEmailFieldForError() {
         
-        email.asObservable()
+        self.email.asObservable()
             .map { email in
-                if email.isNotEmpty && email.isValidEmailAddress {
-                    return State.showEmailError("")
-                }
-                else if email.isNotEmpty && !email.isValidEmailAddress {
+                if email.isNotEmpty && !email.isValidEmailAddress {
                     return .some(State.showEmailError("Please enter valid email address"))
                 }
-                return State.showEmailError("")
-        }
-        .bind(to: mutableState)
-        .disposed(by: disposeBag)
+                return State.showEmailError(nil)
+            }
+            .bind(to: self.mutableState)
+            .disposed(by: self.disposeBag)
     }
     
     private func bindPasswordFieldForError() {
-        password.asObservable()
+        self.password.asObservable()
             .map { password in
-                if password.isNotEmpty && password.isValidNewPassword {
-                    return State.showPasswordError("")
-                }
-                else if password.isNotEmpty && !password.isValidEmailAddress {
+                if password.isNotEmpty && !password.isValidEmailAddress {
                     return .some(State.showPasswordError("Password should at least 8 characters, contains 1 upper case and lower case letter and least 1 number"))
                 }
-                return State.showEmailError("")
-        }
-        .bind(to: mutableState)
-        .disposed(by: disposeBag)
+                return State.showEmailError(nil)
+            }
+            .bind(to: self.mutableState)
+            .disposed(by: self.disposeBag)
     }
     
     @discardableResult
@@ -118,7 +112,7 @@ extension LoginViewModel {
 extension LoginViewModel {
     enum State: ViewModelState {
         case enableButton(Bool)
-        case showEmailError(String)
-        case showPasswordError(String)
+        case showEmailError(String?)
+        case showPasswordError(String?)
     }
 }
